@@ -5,15 +5,15 @@ import { removeAccessToken, setAccessToken } from "./auth.jwt.service";
 export const authService = {
     async main(type: "login" | "register", data: IAuthForm) {
         const response = await axiosInstance.post<IAuthResponse>(`/auth/${type}`, data);
-
-        if (response.data.token) setAccessToken(response.data.token);
+        console.log(response.data);
+        if (response.data.access_token) setAccessToken(response.data.access_token);
         return response;
     },
 
     async getNewToken() {
         const response = await axiosInstance.get<IAuthResponse>("/auth/refresh");
 
-        if (response.data.token) setAccessToken(response.data.token);
+        if (response.data.access_token) setAccessToken(response.data.access_token);
         return response;
     },
 
