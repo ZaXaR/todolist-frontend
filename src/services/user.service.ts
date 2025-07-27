@@ -6,7 +6,7 @@ export interface iProfileResponse {
 }
 
 class UserService {
-    private BASE_URL = "/api/user";
+    private BASE_URL = "/user";
 
     async getProfile(): Promise<iProfileResponse> {
         const response = await axiosAuth.get<iProfileResponse>(`${this.BASE_URL}/profile`);
