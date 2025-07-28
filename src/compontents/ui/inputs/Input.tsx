@@ -2,7 +2,9 @@ import React, { forwardRef } from 'react';
 
 interface IInputProps {
     id: string;
+    name: string;
     label: string;
+    value?: string;
     placeholder?: string;
     type?: string;
     state?: 'default' | 'error' | 'success';
@@ -10,7 +12,7 @@ interface IInputProps {
     isNumber?: boolean;
 }
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
-    ({ id, label, placeholder, type, state, extra, isNumber, ...props },
+    ({ id, label, name, value, placeholder, type, state, extra, isNumber, ...props },
         ref
     ) => {
         return (
@@ -21,6 +23,8 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
                 <input
                     id={id}
                     ref={ref}
+                    name={name}
+                    value={value}
                     type={type}
                     placeholder={placeholder}
                     className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${state === 'error' ? 'border-red-500' : state === 'success' ? 'border-green-500' : 'border-gray-300'

@@ -7,3 +7,9 @@ export interface ITodo {
     updatedAt: Date;
     endDate?: Date;
 }
+
+export type TCreateTodo = {
+  title: string;
+  text: string;
+  endDate?: string;
+};

@@ -6,7 +6,7 @@ export function Profile() {
   const { data, isLoading } = useProfile();
 
   return isLoading ? (
-    <div className="text-gray-300 text-sm">Загрузка профиля...</div>
+    <div className="text-gray-300 text-sm">Loading Profile...</div>
   ) : (
     <div className="bg-gray-800 text-gray-100 p-4 rounded-lg shadow-md space-y-2">
       <h4 className="text-sm text-gray-400">📧 {data?.user.email}</h4>

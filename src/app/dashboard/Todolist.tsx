@@ -1,9 +1,42 @@
 'use client'
 
+import { TodoCard } from "@/compontents/ui/todos/TodoCard";
+import { todoService } from "@/services/todo.services";
+import { useEffect, useState } from "react";
+import { ITodo } from "@/interfaces/todolist.interface";
+
 export function Todolist() {
+  const [todolist, setTodoList] = useState<ITodo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadTodos = async () => {
+      const data = await todoService.getTodosList();
+      setTodoList(data);
+    };
+    setIsLoading(false);
+    loadTodos();
+  }, [])
+
   return (
-    <div>
-      <h2>Список задач</h2>
-    </div>
+    <section className="max-w-xl mx-auto p-4 sm:p-6 lg:p-8">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-800">Tasks</h2>
+
+      {isLoading ? (
+        <div className="flex items-center justify-center h-32">
+          <span className="text-sm text-gray-500 animate-pulse">Loading...</span>
+        </div>
+      ) : todolist.length === 0 ? (
+        <div className="flex items-center justify-center h-32 border rounded-lg bg-gray-50">
+          <span className="text-sm text-gray-500">No active task.</span>
+        </div>
+      ) : (
+        <div className="grid gap-4">
+          {todolist.map((data) => (
+            <TodoCard key={data.id} todo={data} />
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
