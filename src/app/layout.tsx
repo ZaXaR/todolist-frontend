@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import '@/app/globals.scss'
+import '@/styles/tailwind.css'
 import { SITE_NAME } from "../constants/site.config";
 import { Providers } from "./providers";
 

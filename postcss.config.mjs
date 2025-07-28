@@ -1,7 +1,7 @@
 export default {
   plugins: {
-    // new ver work only with this tailwindcss postcss
-    '@tailwindcss/postcss': {},
+    // postcss-nesting read about this plugin can help with sass
+    "@tailwindcss/postcss": {},
     autoprefixer: {},
   },
-}
+};

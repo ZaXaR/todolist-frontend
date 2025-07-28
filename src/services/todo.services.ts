@@ -5,7 +5,6 @@ class TodoService {
     private BASE_URL = "/todolist";
 
     async getTodosList(): Promise<ITodo[]> {
-        console.log(this.BASE_URL);
         const response = await axiosAuth.get(this.BASE_URL);
         if (!response.data) {
             throw new Error("Failed to get todos");

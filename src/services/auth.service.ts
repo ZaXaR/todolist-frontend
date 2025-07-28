@@ -5,7 +5,6 @@ import { removeAccessToken, setAccessToken } from "./auth.jwt.service";
 export const authService = {
     async main(type: "login" | "register", data: IAuthForm) {
         const response = await axiosInstance.post<IAuthResponse>(`/auth/${type}`, data);
-        console.log(response.data);
         if (response.data.access_token) setAccessToken(response.data.access_token);
         return response;
     },

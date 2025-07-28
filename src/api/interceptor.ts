@@ -1,7 +1,7 @@
 import { getAccessToken, removeAccessToken } from "@/services/auth.jwt.service";
 import axios, { CreateAxiosDefaults } from "axios";
-import { errorCatch } from "./error";
 import { authService } from "@/services/auth.service";
+import { errorCatch } from "@/utils/error";
 
 const options: CreateAxiosDefaults = {
     baseURL: "http://localhost:4200/api",
@@ -35,7 +35,7 @@ axiosAuth.interceptors.response.use(
         ) {
             originalRequest._retry = true;
             try {
-                await authService.getNewTokens(); // Assuming this function refreshes tokens
+                await authService.getNewToken(); // Assuming this function refreshes tokens
                 return axiosAuth.request(originalRequest);
             } catch (error) {
                 if (errorCatch(error) === "jwt expired") removeAccessToken();

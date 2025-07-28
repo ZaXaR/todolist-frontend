@@ -9,13 +9,13 @@ class UserService {
     private BASE_URL = "/user";
 
     async getProfile(): Promise<iProfileResponse> {
-        const response = await axiosAuth.get<iProfileResponse>(`${this.BASE_URL}/profile`);
+        const response = await axiosAuth.get<IUser>(`${this.BASE_URL}/profile`);
 
         if (!response.data) {
             throw new Error("Failed to fetch profile");
         }
 
-        return response.data;
+        return { user: response.data };
     }
 
     async updateProfile(data: Partial<IUser>): Promise<iProfileResponse> {
