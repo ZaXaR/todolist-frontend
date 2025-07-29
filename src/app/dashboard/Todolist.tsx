@@ -2,21 +2,18 @@
 
 import { TodoCard } from "@/compontents/ui/todos/TodoCard";
 import { todoService } from "@/services/todo.services";
-import { useEffect, useState } from "react";
 import { ITodo } from "@/interfaces/todolist.interface";
+import { useQuery } from "@tanstack/react-query";
 
 export function Todolist() {
-  const [todolist, setTodoList] = useState<ITodo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const loadTodos = async () => {
-      const data = await todoService.getTodosList();
-      setTodoList(data);
-    };
-    setIsLoading(false);
-    loadTodos();
-  }, [])
+  const {
+    data: todolist = [],
+    isLoading,
+    isError,
+  } = useQuery<ITodo[]>({
+    queryKey: ["todos"],
+    queryFn: () => todoService.getTodosList()
+  });
 
   return (
     <section className="max-w-xl mx-auto p-4 sm:p-6 lg:p-8">

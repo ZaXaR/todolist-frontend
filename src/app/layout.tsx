@@ -4,6 +4,7 @@ import '@/app/globals.scss'
 import '@/styles/tailwind.css'
 import { SITE_NAME } from "../constants/site.config";
 import { Providers } from "./providers";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
       >
         <Providers>
           {children}
+          <Toaster position="top-right" />
         </Providers>
       </body>
     </html>
