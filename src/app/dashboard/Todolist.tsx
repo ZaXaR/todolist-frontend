@@ -2,9 +2,9 @@
 
 import { TodoCard } from "@/compontents/ui/todos/TodoCard";
 import { todoService } from "@/services/todo.services";
-import { ITodo } from "@/interfaces/todolist.interface";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTodoRefresh } from "@/hooks/useTodoRefresh";
+import { ITodoResponse } from "@/interfaces/todolist.interface";
 
 export function Todolist() {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export function Todolist() {
     data: todolist = [],
     isLoading,
     isError,
-  } = useQuery<ITodo[]>({
+  } = useQuery<ITodoResponse[]>({
     queryKey: ['todos'],
     queryFn: () => todoService.getTodosList(),
   });

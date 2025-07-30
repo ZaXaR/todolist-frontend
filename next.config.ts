@@ -1,4 +1,12 @@
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.gravatar.com'
+      }
+    ]
+  },
   turbopack: {
     resolveAlias: {
       '@': './src',

@@ -16,12 +16,13 @@ const axiosInstance = axios.create(options);
 const axiosAuth = axios.create(options);
 
 axiosAuth.interceptors.request.use(config => {
-    const token = getAccessToken();
-    if (config?.headers && token) {
-        config.headers.Authorization = `Bearer ${token}`;
+    const accessToken = getAccessToken();
+    if (config?.headers && accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
     }
     return config;
 });
+
 axiosAuth.interceptors.response.use(
     config => config,
     async error => {
@@ -29,8 +30,8 @@ axiosAuth.interceptors.response.use(
 
         if (
             error.response.status === 401 ||
-            errorCatch(error).includes("jwt expired") ||
-            errorCatch(error).includes("jwt malformed") &&
+            errorCatch(error) === 'jwt expired' ||
+            errorCatch(error) === 'jwt malformed' &&
             error.config && !error.config._isRetry
         ) {
             originalRequest._retry = true;
@@ -38,7 +39,7 @@ axiosAuth.interceptors.response.use(
                 await authService.getNewToken(); // Assuming this function refreshes tokens
                 return axiosAuth.request(originalRequest);
             } catch (error) {
-                if (errorCatch(error) === "jwt expired") removeAccessToken();
+                if (errorCatch(error) === 'jwt expired') removeAccessToken();
             }
         }
 

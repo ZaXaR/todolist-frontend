@@ -1,10 +1,10 @@
 import { axiosAuth } from "@/api/interceptor";
-import { ITodo, TCreateTodo } from "@/interfaces/todolist.interface";
+import { ITodoResponse, TCreateTodo } from "@/interfaces/todolist.interface";
 
 class TodoService {
     private BASE_URL = "/todolist";
 
-    async getTodosList(): Promise<ITodo[]> {
+    async getTodosList(): Promise<ITodoResponse[]> {
         const response = await axiosAuth.get(this.BASE_URL);
         if (!response.data) {
             throw new Error("Failed to get todos");
@@ -12,7 +12,7 @@ class TodoService {
         return response.data;
     }
 
-    async createTodo(data: TCreateTodo): Promise<ITodo> {
+    async createTodo(data: TCreateTodo): Promise<ITodoResponse> {
         const response = await axiosAuth.post(this.BASE_URL, data);
         if (!response.data) {
             throw new Error("Failed to create todo");
@@ -21,7 +21,7 @@ class TodoService {
     }
 
 
-    async updateTodo(todo: ITodo): Promise<ITodo> {
+    async updateTodo(todo: ITodoResponse): Promise<ITodoResponse> {
         const response = await axiosAuth.put(`${this.BASE_URL}/${todo.id}`, todo);
         if (!response.data) {
             throw new Error("Failed to update todo");

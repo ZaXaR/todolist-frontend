@@ -1,10 +1,11 @@
-import { ITodo } from "@/interfaces/todolist.interface";
+
+import { ITodoResponse } from '@/interfaces/todolist.interface';
 import { format } from 'date-fns'
 
 interface TodoCardProps {
-    todo: ITodo;
+    todo: ITodoResponse;
     onDelete?: (id: string) => void;
-    onEdit?: (todo: ITodo) => void;
+    onEdit?: (todo: ITodoResponse) => void;
     onToggleComplete?: (id: string) => void;
 }
 

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { todoService } from '@/services/todo.services';
-import { ITodo } from '@/interfaces/todolist.interface';
+import { ITodoResponse } from '@/interfaces/todolist.interface';
 
 export function useTodoRefresh() {
     const queryClient = useQueryClient();
@@ -8,7 +8,7 @@ export function useTodoRefresh() {
     const deleteMutation = useMutation({
         mutationFn: (id: string) => todoService.deleteTodo(id),
         onMutate: async (id: string) => {
-            const existingTodo = queryClient.getQueryData<ITodo[]>(['todos']);
+            const existingTodo = queryClient.getQueryData<ITodoResponse[]>(['todos']);
             if (existingTodo) {
                 queryClient.setQueryData(['todos'], existingTodo.filter(todo => todo.id !== id));
             }
@@ -25,7 +25,7 @@ export function useTodoRefresh() {
     });
 
     const toggleCompleteMutation = useMutation({
-        mutationFn: async (todo: ITodo) => {
+        mutationFn: async (todo: ITodoResponse) => {
             const updated = { ...todo, completed: !todo.isCompleted };
             await todoService.updateTodo(updated);
             return updated;
