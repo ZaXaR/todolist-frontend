@@ -3,17 +3,30 @@
 import { TodoCard } from "@/compontents/ui/todos/TodoCard";
 import { todoService } from "@/services/todo.services";
 import { ITodo } from "@/interfaces/todolist.interface";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useTodoRefresh } from "@/hooks/useTodoRefresh";
 
 export function Todolist() {
+  const queryClient = useQueryClient();
   const {
     data: todolist = [],
     isLoading,
     isError,
   } = useQuery<ITodo[]>({
-    queryKey: ["todos"],
-    queryFn: () => todoService.getTodosList()
+    queryKey: ['todos'],
+    queryFn: () => todoService.getTodosList(),
   });
+
+  const { deleteMutation, toggleCompleteMutation } = useTodoRefresh();
+
+  const handleDelete = (id: string) => {
+    deleteMutation.mutate(id);
+  };
+  const handleToogleComplete = (id: string) => {
+    const todo = todolist.find(t => t.id === id);
+    if (todo) toggleCompleteMutation.mutate(todo);
+  };
+
 
   return (
     <section className="max-w-xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -29,8 +42,13 @@ export function Todolist() {
         </div>
       ) : (
         <div className="grid gap-4">
-          {todolist.map((data) => (
-            <TodoCard key={data.id} todo={data} />
+          {todolist.map((todo) => (
+            <TodoCard
+              key={todo.id}
+              todo={todo}
+              onDelete={handleDelete}
+              onToggleComplete={handleToogleComplete}
+            />
           ))}
         </div>
       )}

@@ -13,7 +13,6 @@ class TodoService {
     }
 
     async createTodo(data: TCreateTodo): Promise<ITodo> {
-        console.log(data);
         const response = await axiosAuth.post(this.BASE_URL, data);
         if (!response.data) {
             throw new Error("Failed to create todo");
