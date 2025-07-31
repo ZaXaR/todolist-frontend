@@ -17,21 +17,25 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
         ref
     ) => {
         return (
-            <div className={`mb-4 ${extra}`}>
-                <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
-                    {label}
-                </label>
-                <input
-                    id={id}
-                    ref={ref}
-                    name={name}
-                    value={value}
-                    type={type}
-                    placeholder={placeholder}
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${state === 'error' ? 'border-red-500' : state === 'success' ? 'border-green-500' : 'border-gray-300'
-                        }`}
-                    {...props}
-                />
-            </div>
+            <div className={`mb-6 ${extra}`}>
+  <label htmlFor={id} className="block text-sm font-medium text-[hsl(var(--foreground))] mb-2">
+    {label}
+  </label>
+
+  <input
+    id={id}
+    ref={ref}
+    name={name}
+    value={value}
+    type={type}
+    placeholder={placeholder}
+    className={`
+      w-full px-4 py-2 rounded-xl border backdrop-blur-sm bg-white/70 shadow-sm
+      focus:outline-none focus:ring-2 focus:ring-indigo-300
+      ${state === 'error' ? 'border-red-500' : state === 'success' ? 'border-green-500' : 'border-white/30'}
+    `}
+    {...props}
+  />
+</div>
         );
     });
