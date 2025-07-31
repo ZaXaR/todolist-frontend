@@ -13,10 +13,10 @@ A modern task management web application built with **Next.js**, **Tailwind CSS*
 - 🍪 **Cookie-Based Session Handling**  
   Auth tokens and user data are stored in HTTP-only cookies to enhance security and simplify client-side logic.
 
-- 🧠 **Task Management**  
-  - Create, edit, delete tasks  
-  - Mark tasks as done or undone  
-  - View task status (Pending / Done)  
+- 🧠 **Task Management**
+  - Create, edit, delete tasks
+  - Mark tasks as done or undone
+  - View task status (Pending / Done)
   - Set deadlines and timestamps
 
 - 🖼️ **Custom Avatar Integration**  
@@ -55,23 +55,26 @@ Deployment platform
 
 📂 Project Structure
 
-├── public/              # Static assets
-├── src/                 # Source code
-│   ├── app/             # App router pages
-│   ├── components/      # Reusable UI components
-│   ├── styles/          # SCSS and Tailwind config
-│   └── utils/           # Helper functions
-├── tsconfig.json        # TypeScript configuration
+├── public/ # Static assets
+├── src/ # Source code
+│ ├── app/ # App router pages
+│ ├── components/ # Reusable UI components
+│ ├── styles/ # SCSS and Tailwind config
+│ └── utils/ # Helper functions
+├── tsconfig.json # TypeScript configuration
 
 🧪 Getting Started
 
 # Install dependencies
+
 npm install
 
 # Run development server
+
 npm run dev
 
 # Open in browser
+
 http://localhost:3000
 
 🔐 Authentication Flow
