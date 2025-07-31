@@ -12,13 +12,6 @@ export async function middleware(request: NextRequest) {
 
 
     if (accessToken && isAuthPage) return NextResponse.redirect(new URL("/dashboard", request.url))
-    // if (!token && isDashboardPage) {
-    //     return NextResponse.redirect(new URL("/auth", request.url));
-    // }
-
-    // if (token && isAuthPage) {
-    //     return NextResponse.redirect(new URL("/dashboard", request.url));
-    // }
 
     return NextResponse.next();
 
