@@ -56,10 +56,11 @@ export function CreateTask() {
       <Input
         id="endDate"
         name="endDate"
-        label="Date End"
-        type="date"
+        label="Date & Time End"
+        type="datetime-local"
         state="default"
       />
+
 
       <Button type="submit" className="mt-4 w-full" disabled={isLoading}>
         {isLoading ? "Created..." : "Create"}

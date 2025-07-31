@@ -14,7 +14,7 @@ interface TodoCardProps {
 
 export const TodoCard = React.memo(({ todo, onDelete, onEdit, onToggleComplete }: TodoCardProps) => {
     return (
-        <div className="border rounded-lg p-4 shadow-md bg-white dark:bg-gray-900 transition hover:scale-[1.01] space-y-3">
+        <div className="rounded-xl border border-gray-200 dark:border-gray-700/50 bg-background p-5 shadow-sm transition-transform duration-200 hover:scale-[1.02] space-y-4">
             <div className="flex justify-between items-center">
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                     {todo.title}

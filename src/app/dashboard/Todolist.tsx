@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTodoRefresh } from "@/hooks/useTodoRefresh";
 import { ITodoResponse } from "@/interfaces/todolist.interface";
 import { useCallback, useState } from "react";
-import { EditTodoModal } from "@/compontents/modal/editTodoModal";
+import { EditTodoModal } from "@/compontents/modal/EditTodoModal";
 
 export function Todolist() {
   const [editingTodo, setEditingTodo] = useState<ITodoResponse | null>(null);

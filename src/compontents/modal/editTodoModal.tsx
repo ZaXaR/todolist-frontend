@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ITodoResponse } from '@/interfaces/todolist.interface';
+import { format } from 'date-fns';
 import { Input } from '../ui/inputs/Input';
 import { Button } from '../ui/buttons/Button';
 
@@ -22,7 +23,7 @@ export const EditTodoModal = ({
     const [title, setTitle] = useState<string>(todo.title);
     const [text, setText] = useState<string>(todo.text);
     const [endDate, setEndDate] = useState<string>(
-        todo.endDate ? new Date(todo.endDate).toISOString().slice(0, 16) : ''
+        todo.endDate ? format(new Date(todo.endDate), "yyyy-MM-dd'T'HH:mm") : ''
     );
 
     useEffect(() => {
@@ -36,8 +37,14 @@ export const EditTodoModal = ({
     if (!isOpen) return null;
 
     return createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/30 backdrop-blur-sm">
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-xl w-full max-w-md space-y-4 border border-gray-200 dark:border-gray-700">
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/30 backdrop-blur-sm"
+            onClick={onClose}
+        >
+            <div
+                className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-xl w-full max-w-md space-y-4 border border-gray-200 dark:border-gray-700"
+                onClick={(e) => e.stopPropagation()}
+            >
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Edit</h2>
 
                 <Input
@@ -52,7 +59,7 @@ export const EditTodoModal = ({
                 <Input
                     id="text"
                     name="text"
-                    label="Text"
+                    label="Description"
                     value={text}
                     placeholder="Please edit text"
                     onChange={(e) => setText(e.target.value)}
