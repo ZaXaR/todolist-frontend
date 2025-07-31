@@ -20,7 +20,6 @@ class TodoService {
         return response.data;
     }
 
-
     async updateTodo(todo: ITodoResponse): Promise<ITodoResponse> {
         const response = await axiosAuth.put(`${this.BASE_URL}/${todo.id}`, todo);
         if (!response.data) {

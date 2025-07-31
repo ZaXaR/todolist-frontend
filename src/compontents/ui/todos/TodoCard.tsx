@@ -1,6 +1,7 @@
 
 import { ITodoResponse } from '@/interfaces/todolist.interface';
 import { format } from 'date-fns'
+import React from 'react';
 
 interface TodoCardProps {
     todo: ITodoResponse;
@@ -9,7 +10,9 @@ interface TodoCardProps {
     onToggleComplete?: (id: string) => void;
 }
 
-export const TodoCard = ({ todo, onDelete, onEdit, onToggleComplete }: TodoCardProps) => {
+// test reactmemo
+
+export const TodoCard = React.memo(({ todo, onDelete, onEdit, onToggleComplete }: TodoCardProps) => {
     return (
         <div className="border rounded-lg p-4 shadow-md bg-white dark:bg-gray-900 transition hover:scale-[1.01] space-y-3">
             <div className="flex justify-between items-center">
@@ -55,4 +58,4 @@ export const TodoCard = ({ todo, onDelete, onEdit, onToggleComplete }: TodoCardP
             </div>
         </div>
     );
-};
+});

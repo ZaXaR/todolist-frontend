@@ -10,6 +10,7 @@ interface IInputProps {
     state?: 'default' | 'error' | 'success';
     extra?: string;
     isNumber?: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
     ({ id, label, name, value, placeholder, type, state, extra, isNumber, ...props },

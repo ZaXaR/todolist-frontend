@@ -2,31 +2,42 @@
 
 import { TodoCard } from "@/compontents/ui/todos/TodoCard";
 import { todoService } from "@/services/todo.services";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useTodoRefresh } from "@/hooks/useTodoRefresh";
 import { ITodoResponse } from "@/interfaces/todolist.interface";
+import { useCallback, useState } from "react";
+import { EditTodoModal } from "@/compontents/modal/editTodoModal";
 
 export function Todolist() {
-  const queryClient = useQueryClient();
+  const [editingTodo, setEditingTodo] = useState<ITodoResponse | null>(null);
+  const { deleteMutation, toggleCompleteMutation, editMutation } = useTodoRefresh();
+
   const {
     data: todolist = [],
-    isLoading,
-    isError,
+    isLoading
   } = useQuery<ITodoResponse[]>({
     queryKey: ['todos'],
     queryFn: () => todoService.getTodosList(),
   });
 
-  const { deleteMutation, toggleCompleteMutation } = useTodoRefresh();
+  const handleEdit = useCallback((todo: ITodoResponse) => {
+    setEditingTodo(todo);
+  }, []);
 
-  const handleDelete = (id: string) => {
+  const handleSave = useCallback((updated: ITodoResponse) => {
+    editMutation.mutate(updated, {
+      onSuccess: () => setEditingTodo(null),
+    });
+  }, [editMutation]);
+
+  const handleDelete = useCallback((id: string) => {
     deleteMutation.mutate(id);
-  };
-  const handleToogleComplete = (id: string) => {
+  }, [deleteMutation]);
+
+  const handleToogleComplete = useCallback((id: string) => {
     const todo = todolist.find(t => t.id === id);
     if (todo) toggleCompleteMutation.mutate(todo);
-  };
-
+  }, [todolist, toggleCompleteMutation]);
 
   return (
     <section className="max-w-xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -48,9 +59,19 @@ export function Todolist() {
               todo={todo}
               onDelete={handleDelete}
               onToggleComplete={handleToogleComplete}
+              onEdit={handleEdit}
             />
           ))}
         </div>
+      )}
+
+      {editingTodo && (
+        <EditTodoModal
+          todo={editingTodo}
+          isOpen={true}
+          onClose={() => setEditingTodo(null)}
+          onSave={handleSave}
+        />
       )}
     </section>
   );

@@ -26,10 +26,16 @@ export function useTodoRefresh() {
 
     const toggleCompleteMutation = useMutation({
         mutationFn: async (todo: ITodoResponse) => {
-            const updated = { ...todo, completed: !todo.isCompleted };
-            await todoService.updateTodo(updated);
-            return updated;
+            const updated = { ...todo, isCompleted: !todo.isCompleted };
+            return await todoService.updateTodo(updated);
         },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] });
+        },
+    });
+
+    const editMutation = useMutation({
+        mutationFn: (updated: ITodoResponse) => todoService.updateTodo(updated),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] });
         },
@@ -38,5 +44,6 @@ export function useTodoRefresh() {
     return {
         deleteMutation,
         toggleCompleteMutation,
+        editMutation
     };
 }
