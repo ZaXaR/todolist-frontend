@@ -9,8 +9,5 @@
     "trailingComma": "all",
     "jsxSingleQuote": true,
     "endOfLine": "lf",
-    "embeddedLanguageFormatting": "auto",
-    "plugins": [
-        "@trivago/prettier-plugin-sort-imports"
-    ]
+    "embeddedLanguageFormatting": "auto"
 }

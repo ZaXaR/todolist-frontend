@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Todolist Frontend
 
-## Getting Started
+A modern task management web application built with **Next.js**, **Tailwind CSS**, and **TypeScript**, designed for speed, scalability, and developer-friendly workflows.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
+- 🔐 **JWT Authentication**  
+  Secure login and session management using JSON Web Tokens. Tokens are stored in cookies for persistent authentication across sessions.
+
+- 🎨 **Tailwind CSS + SCSS**  
+  Hybrid styling approach combining utility-first Tailwind with modular SCSS for flexibility and maintainability.
+
+- 🍪 **Cookie-Based Session Handling**  
+  Auth tokens and user data are stored in HTTP-only cookies to enhance security and simplify client-side logic.
+
+- 🧠 **Task Management**  
+  - Create, edit, delete tasks  
+  - Mark tasks as done or undone  
+  - View task status (Pending / Done)  
+  - Set deadlines and timestamps
+
+- 🖼️ **Custom Avatar Integration**  
+  Pixel-style avatars replace copyrighted characters for a playful, safe UI.
+
+- 📦 **Next.js App Router**  
+  Uses the latest Next.js routing system for optimized performance and modular page structure.
+
+## 🛠️ Tech Stack
+
+Technology
+
+Next.js
+
+React framework for SSR and routing
+
+TypeScript
+
+Type-safe development
+
+Tailwind CSS
+
+SCSS
+
+Modular and reusable styles
+
+JWT
+
+Authentication and session control
+
+Cookies
+
+Secure token storage
+
+Deployment platform
+
+📂 Project Structure
+
+├── public/              # Static assets
+├── src/                 # Source code
+│   ├── app/             # App router pages
+│   ├── components/      # Reusable UI components
+│   ├── styles/          # SCSS and Tailwind config
+│   └── utils/           # Helper functions
+├── tsconfig.json        # TypeScript configuration
+
+🧪 Getting Started
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Open in browser
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🔐 Authentication Flow
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+User logs in via backend API
 
-## Learn More
+JWT is returned and stored in secure cookie
 
-To learn more about Next.js, take a look at the following resources:
+Frontend reads cookie to validate session
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Protected routes and actions are gated by token presence
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📸 UI Preview
 
-## Deploy on Vercel
+The interface includes:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sidebar with avatar and logout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Task list with status indicators
+
+Task creation form with date picker
+
+Responsive layout with subtle animations
