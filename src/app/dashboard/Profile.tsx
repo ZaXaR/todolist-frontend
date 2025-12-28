@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/compontents/ui/buttons/Button'
+import { Button } from '@/components/ui/buttons/Button'
 import { useProfile } from '@/hooks/useProfile'
 import { authService } from '@/services/auth.service'
 import { getGravatarUrl } from '@/utils/getGravatarUrl'

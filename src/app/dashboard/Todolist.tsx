@@ -1,12 +1,12 @@
 'use client'
 
-import { TodoCard } from '@/compontents/ui/todos/TodoCard'
+import { TodoCard } from '@/components/ui/todos/TodoCard'
 import { todoService } from '@/services/todo.services'
 import { useQuery } from '@tanstack/react-query'
 import { useTodoRefresh } from '@/hooks/useTodoRefresh'
 import { ITodoResponse } from '@/interfaces/todolist.interface'
 import { useCallback, useState } from 'react'
-import { EditTodoModal } from '@/compontents/modal/EditTodoModal'
+import { EditTodoModal } from '@/components/modal/EditTodoModal'
 
 export function Todolist() {
   const [editingTodo, setEditingTodo] = useState<ITodoResponse | null>(null)

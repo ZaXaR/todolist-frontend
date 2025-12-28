@@ -1,8 +1,8 @@
 'use client'
 
 import { useCreateTodo } from '@/hooks/useCreateTodo'
-import { Input } from '@/compontents/ui/inputs/Input'
-import { Button } from '@/compontents/ui/buttons/Button'
+import { Input } from '@/components/ui/inputs/Input'
+import { Button } from '@/components/ui/buttons/Button'
 import { useRef } from 'react'
 
 export function CreateTask() {
