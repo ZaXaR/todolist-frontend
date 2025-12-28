@@ -2,13 +2,12 @@ import { EnumToken } from "@/enums/auth.enum";
 import Cookies from "js-cookie";
 
 // Access token
-export const getAccessToken = () => {
+export const getAccessToken = (): string | null => {
   return Cookies.get(EnumToken.ACCESS_TOKEN) || null;
 };
 
 export const setAccessToken = (accessToken: string) => {
   Cookies.set(EnumToken.ACCESS_TOKEN, accessToken, {
-    domain: 'localhost',
     expires: 1,
     secure: true,
     sameSite: "none",
@@ -20,7 +19,7 @@ export const removeAccessToken = () => {
 };
 
 // Refresh token
-export const getRefreshToken = () => {
+export const getRefreshToken = (): string | null => {
   return Cookies.get(EnumToken.REFRESH_TOKEN) || null;
 };
 
