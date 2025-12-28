@@ -4,13 +4,14 @@ import { authService } from "@/services/auth.service";
 import { errorCatch } from "@/utils/error";
 
 const options: CreateAxiosDefaults = {
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
   withCredentials: true,
 };
+
 
 const axiosInstance = axios.create(options);
 const axiosAuth = axios.create(options);
